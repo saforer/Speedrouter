@@ -4,7 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
 
 
 public class PathPanel extends JPanel {
@@ -16,13 +19,29 @@ public class PathPanel extends JPanel {
 		FillTree(top);
 		
 		JTree tree = new JTree(top);
+		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+		
+		tree.addTreeSelectionListener(new TreeSelectionListener() {
+		    public void valueChanged(TreeSelectionEvent e) {
+		        DefaultMutableTreeNode node = (DefaultMutableTreeNode)
+		                           tree.getLastSelectedPathComponent();
+
+		    /* if nothing is selected */ 
+		        if (node == null) return;
+
+		    /* retrieve the node that was selected */ 
+		        Object nodeInfo = node.getUserObject();
+		    /* React to the node selection. */
+		        UpdateWindowName(nodeInfo.toString());
+		    }
+		});
+		
 		add(tree, BorderLayout.CENTER);
-		
-		//Shouldn't this line go "What is the parent of this panel... The MainFrame (JFrame) is the parent of this panel!"
-		JFrame topFrame = (JFrame)this.getParent();
-		
-		//"So I can now set the title OF that main frame to be equal to "Test"
-		topFrame.setTitle("Test");
+	}
+	
+	private void UpdateWindowName(String newTitle)	{
+		JFrame topFrame = (JFrame)SwingUtilities.getWindowAncestor(this);
+		topFrame.setTitle(newTitle);
 	}
 
 	private void FillTree(DefaultMutableTreeNode treeTop){
