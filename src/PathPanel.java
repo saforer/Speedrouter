@@ -1,19 +1,28 @@
-import java.awt.*;
+import java.awt.BorderLayout;
 
-import javax.swing.*;
-import javax.swing.tree.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTree;
+import javax.swing.SwingUtilities;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 
 public class PathPanel extends JPanel {
-	
 	public PathPanel() {
 		setLayout(new BorderLayout(0, 0));
 		
 		DefaultMutableTreeNode top = new DefaultMutableTreeNode("SOTN Total");
+		
+		FillTree(top);
+		
 		JTree tree = new JTree(top);
 		add(tree, BorderLayout.CENTER);
 		
-		FillTree(top);
+		//Shouldn't this line go "What is the parent of this panel... The MainFrame (JFrame) is the parent of this panel!"
+		JFrame topFrame = (JFrame)this.getParent();
+		
+		//"So I can now set the title OF that main frame to be equal to "Test"
+		topFrame.setTitle("Test");
 	}
 
 	private void FillTree(DefaultMutableTreeNode treeTop){
@@ -44,6 +53,7 @@ public class PathPanel extends JPanel {
 			
 			pathUnit = new DefaultMutableTreeNode("HippogriffPt3");
 			pathFolder.add(pathUnit);
+	
 		
 	}
 }

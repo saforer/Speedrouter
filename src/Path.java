@@ -1,4 +1,3 @@
-
 public class Path {
 	public String name;
 	public Integer time;
