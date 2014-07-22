@@ -17,11 +17,12 @@ public class PathPanel extends JPanel {
 	}
 	
 	public Path getExamplePath() {
-		Path top = new Path("Root");
+		Path top = new Path("Wind Waker");
 		Path temp;
 		Path temp2;
 		
 		Path outset = new Path("Outset", top);
+		top.AddChild(outset);
 		
 		temp = new Path("Start Game", outset);
 		outset.AddChild(temp);

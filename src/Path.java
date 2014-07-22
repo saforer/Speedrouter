@@ -24,6 +24,10 @@ public class Path implements TreeNode{
 		children.add(inPath);
 	}
 	
+	@Override public String toString() {
+		return name;
+	}
+	
 	//Implementation
 	public Enumeration<Path> children() {
 		return java.util.Collections.enumeration(children);
