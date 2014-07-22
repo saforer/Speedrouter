@@ -38,6 +38,5 @@ public class MainFrame extends JFrame {
 		splitPane_1.setRightComponent(resPanel);		
 		splitPane.setRightComponent(mapPanel);
 		
-		
 		}
 }

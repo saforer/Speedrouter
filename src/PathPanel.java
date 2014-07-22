@@ -1,20 +1,49 @@
-import java.awt.*;
+import java.awt.BorderLayout;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
+import javax.swing.SwingUtilities;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreeSelectionModel;
 
 
 public class PathPanel extends JPanel {
 	private JTree pathTree;
-	
+				
 	public PathPanel() {
 		setLayout(new BorderLayout(0, 0));
 		
 		pathTree = new JTree(getExamplePath());
 		pathTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-			
-		this.add(pathTree);
+		
+		pathTree.addTreeSelectionListener(new TreeSelectionListener() {
+		    public void valueChanged(TreeSelectionEvent e) {
+		        Path node = (Path) pathTree.getLastSelectedPathComponent();
+
+		    /* if nothing is selected */ 
+		        if (node == null) return;
+
+		    /* retrieve the node that was selected */
+		        Path temp = node;
+		        
+		    /* React to the node selection. */
+		        String tempName = temp.name;
+		        UpdateWindowName(tempName);
+		    }
+		});
+		
+		JScrollPane treeScrollView = new JScrollPane(pathTree);
+		add(treeScrollView);
 	}
+	
+	public void UpdateWindowName(String inName) {
+		JFrame topFrame = (JFrame)SwingUtilities.getWindowAncestor(this);
+		topFrame.setTitle(inName);
+	}
+	
 	
 	public Path getExamplePath() {
 		Path top = new Path("Wind Waker");
