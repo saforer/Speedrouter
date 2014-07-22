@@ -1,78 +1,94 @@
-import java.awt.BorderLayout;
+import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTree;
-import javax.swing.SwingUtilities;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.*;
 import javax.swing.tree.TreeSelectionModel;
 
 
 public class PathPanel extends JPanel {
+	private JTree pathTree;
+	
 	public PathPanel() {
 		setLayout(new BorderLayout(0, 0));
 		
-		DefaultMutableTreeNode top = new DefaultMutableTreeNode("SOTN Total");
-		
-		FillTree(top);
-		
-		JTree tree = new JTree(top);
-		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-		
-		tree.addTreeSelectionListener(new TreeSelectionListener() {
-		    public void valueChanged(TreeSelectionEvent e) {
-		        DefaultMutableTreeNode node = (DefaultMutableTreeNode)
-		                           tree.getLastSelectedPathComponent();
-
-		    /* if nothing is selected */ 
-		        if (node == null) return;
-
-		    /* retrieve the node that was selected */ 
-		        Object nodeInfo = node.getUserObject();
-		    /* React to the node selection. */
-		        UpdateWindowName(nodeInfo.toString());
-		    }
-		});
-		
-		add(tree, BorderLayout.CENTER);
+		pathTree = new JTree(getExamplePath());
+		pathTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+			
+		this.add(pathTree);
 	}
 	
-	private void UpdateWindowName(String newTitle)	{
-		JFrame topFrame = (JFrame)SwingUtilities.getWindowAncestor(this);
-		topFrame.setTitle(newTitle);
-	}
+	public Path getExamplePath() {
+		Path top = new Path("Root");
+		Path temp;
+		Path temp2;
+		
+		Path outset = new Path("Outset", top);
+		
+		temp = new Path("Start Game", outset);
+		outset.AddChild(temp);
 
-	private void FillTree(DefaultMutableTreeNode treeTop){
-		DefaultMutableTreeNode pathFolder = null;
-		DefaultMutableTreeNode pathUnit = null;
-		
-		pathFolder = new DefaultMutableTreeNode("Chapel");
-		treeTop.add(pathFolder);
-		
-			pathUnit = new DefaultMutableTreeNode("ChapelPt1");
-			pathFolder.add(pathUnit);
+		temp = new Path("Tower Sidehop", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Grandma's House", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("100 Rupees", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Savewarp", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Aryll for Telescope", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Zoom in on Postman", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Sidehop off Tower", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Orca's House", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Sword Training", outset);
+		outset.AddChild(temp);
+
+			temp2 = new Path("Phases 1-3", temp);
+			temp.AddChild(temp2);
 			
-			pathUnit = new DefaultMutableTreeNode("ChapelPt2");
-			pathFolder.add(pathUnit);
-			
-			pathUnit = new DefaultMutableTreeNode("ChapelPt3");
-			pathFolder.add(pathUnit);
+			temp2 = new Path("Phases 4-5", temp);
+			temp.AddChild(temp2);
+
+		temp = new Path("Exit Orca's House", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Enter FOF", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Save Tetra", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Shield", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Talk to Tetra", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Nico Rope game", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Spoils bag", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Savewarp", outset);
+		outset.AddChild(temp);
+
+		temp = new Path("Ladder to Tetra", outset);
+		outset.AddChild(temp);
 		
 		
-		pathFolder = new DefaultMutableTreeNode("Hippogriff");
-		treeTop.add(pathFolder);
-		
-			pathUnit = new DefaultMutableTreeNode("HippogriffPt1");
-			pathFolder.add(pathUnit);
-			
-			pathUnit = new DefaultMutableTreeNode("HippogriffPt2");
-			pathFolder.add(pathUnit);
-			
-			pathUnit = new DefaultMutableTreeNode("HippogriffPt3");
-			pathFolder.add(pathUnit);
-	
-		
+		return top;
 	}
 }
+
+
