@@ -36,6 +36,7 @@ public class PathPanel extends JPanel {
 		outset.AddChild(temp);
 
 		temp = new Path("Savewarp", outset);
+	
 		outset.AddChild(temp);
 
 		temp = new Path("Aryll for Telescope", outset);
