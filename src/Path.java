@@ -1,27 +1,35 @@
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-
 import javax.swing.tree.TreeNode;
 
 public class Path implements TreeNode{
 	public String name;
 	public Path parent;
 	public List<Path> children;
+	public List<Resource> resourceList;
 	
 	public Path(String inName) {
 		name = inName;
 		children = new ArrayList<Path>();
+		resourceList = new ArrayList<Resource>();
+		resourceList.add(new Resource("Seconds",5));
 	}
 	
 	public Path(String inName, Path inParent){
 		name = inName;
 		parent = inParent;
 		children = new ArrayList<Path>();
+		resourceList = new ArrayList<Resource>();
+		resourceList.add(new Resource("Seconds",5));
 	}
 	
 	public void AddChild(Path inPath) {
 		children.add(inPath);
+	}
+	
+	public void AddResource(Resource inResource) {
+		resourceList.add(inResource);
 	}
 	
 	@Override public String toString() {

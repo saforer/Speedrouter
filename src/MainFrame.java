@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setTitle("Speedrouter");
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -38,5 +40,9 @@ public class MainFrame extends JFrame {
 		splitPane_1.setRightComponent(resPanel);		
 		splitPane.setRightComponent(mapPanel);
 		
-		}
+	}
+	
+	public void setResourceTable(List<Resource> inResource) {		
+		resPanel.UpdateTable(inResource);
+	}
 }

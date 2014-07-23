@@ -1,6 +1,5 @@
 import java.awt.BorderLayout;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -30,8 +29,7 @@ public class PathPanel extends JPanel {
 		        Path temp = node;
 		        
 		    /* React to the node selection. */
-		        String tempName = temp.name;
-		        UpdateWindowName(tempName);
+		        UpdateWindowName(temp);
 		    }
 		});
 		
@@ -39,11 +37,10 @@ public class PathPanel extends JPanel {
 		add(treeScrollView);
 	}
 	
-	public void UpdateWindowName(String inName) {
-		JFrame topFrame = (JFrame)SwingUtilities.getWindowAncestor(this);
-		topFrame.setTitle(inName);
+	public void UpdateWindowName(Path nodeIn) {
+		MainFrame topFrame = (MainFrame)SwingUtilities.getWindowAncestor(this);
+		topFrame.setResourceTable(nodeIn.resourceList);
 	}
-	
 	
 	public Path getExamplePath() {
 		Path top = new Path("Wind Waker");
