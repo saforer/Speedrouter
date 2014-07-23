@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+
 import javax.swing.tree.TreeNode;
 
 public class Path implements TreeNode{
@@ -13,7 +14,15 @@ public class Path implements TreeNode{
 		name = inName;
 		children = new ArrayList<Path>();
 		resourceList = new ArrayList<Resource>();
-		resourceList.add(new Resource("Seconds",5));
+		Double tempDoub = Math.random() * 10;
+		Integer tempInt = tempDoub.intValue() + 1;
+		resourceList.add(new Resource("Seconds",tempInt));
+		
+		if (Math.random() > .5D) {
+			tempDoub = Math.random() * 100;
+			tempInt = tempDoub.intValue();
+			resourceList.add(new Resource("Rupee",tempInt));
+		}
 	}
 	
 	public Path(String inName, Path inParent){
@@ -21,7 +30,15 @@ public class Path implements TreeNode{
 		parent = inParent;
 		children = new ArrayList<Path>();
 		resourceList = new ArrayList<Resource>();
-		resourceList.add(new Resource("Seconds",5));
+		Double tempDoub = Math.random() * 10;
+		Integer tempInt = tempDoub.intValue() + 1;
+		resourceList.add(new Resource("Seconds",tempInt));
+		
+		if (Math.random() > .5D) {
+			tempDoub = Math.random() * 100;
+			tempInt = tempDoub.intValue();
+			resourceList.add(new Resource("Rupee",tempInt));
+		}
 	}
 	
 	public void AddChild(Path inPath) {
